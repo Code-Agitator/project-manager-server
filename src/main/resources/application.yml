@@ -1,0 +1,39 @@
+spring:
+
+  application:
+    name: user-manager
+  # 配置项目环境
+  profiles:
+    active: dev
+  web:
+    resources:
+      static-locations: classpath:static/
+#      端口设置
+server:
+  port: 8887
+  servlet:
+    session:
+      timeout: PT4H
+      cookie:
+        path: /
+        http-only: false
+    context-path: /service
+
+# mybatis设置
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: pers.llz.user.domain.**
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+  configuration:
+    #    驼峰功能
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
