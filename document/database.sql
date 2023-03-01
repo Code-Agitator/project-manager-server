@@ -1,3 +1,5 @@
+create database  user_manager;
+use user_manager;
 create table t_user_info
 (
     id           int auto_increment
