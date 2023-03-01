@@ -4,7 +4,7 @@ spring:
     name: user-manager
   # 配置项目环境
   profiles:
-    active: dev
+    active: test
   web:
     resources:
       static-locations: classpath:static/
@@ -17,7 +17,7 @@ server:
       cookie:
         path: /
         http-only: false
-    context-path: /service
+    context-path: /user-manager/service
 
 # mybatis设置
 mybatis-plus:
