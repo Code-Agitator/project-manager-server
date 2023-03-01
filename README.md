@@ -21,9 +21,9 @@ https://github.com/Code-Agitator/user-manager-client
     * web web配置
         * handler 一些处理器
             * ResponseReturnValueHandler 统一结构体包装
-    * controller 控制层
-    * domain 数据模型
-    * interceptor 拦截器
-        * BaseHandlerInterceptor 基础拦截器 扩展只需要实现该接口并申明为spring bean
-    * mapper mybatis的mapper
-    * service 业务层
+* controller 控制层
+* domain 数据模型
+* interceptor 拦截器
+    * BaseHandlerInterceptor 基础拦截器 扩展只需要实现该接口并申明为spring bean
+* mapper mybatis的mapper
+* service 业务层
