@@ -29,7 +29,7 @@ public class DepartmentController {
         Page<Department> page = departmentService.lambdaQuery().like(StrUtil.isNotBlank(keywords), Department::getName, keywords)
                 .page(MybatisUtils.initPage(pageNumber, pageSize));
         return PageUtil.copy(page, DepartmentVo.class, departmentVo -> {
-            departmentVo.setUser(userService.getById(departmentVo.getUser()));
+            departmentVo.setUser(userService.getById(departmentVo.getUserId()));
         });
     }
 

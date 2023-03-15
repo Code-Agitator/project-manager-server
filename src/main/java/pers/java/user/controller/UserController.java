@@ -34,7 +34,7 @@ public class UserController {
     RoleService roleService;
 
     @PostMapping("/search")
-    public IPage<UserVo> search(UserSearchDto searchDto) {
+    public IPage<UserVo> search(@RequestBody UserSearchDto searchDto) {
         Page<User> page = userService.lambdaQuery().like(StrUtil.isNotBlank(searchDto.getName()), User::getName, searchDto.getName())
                 .like(StrUtil.isNotBlank(searchDto.getPhone()), User::getPhone, searchDto.getPhone())
                 .eq(ObjectUtil.isNotNull(searchDto.getStatus()), User::getStatus, searchDto.getStatus())
