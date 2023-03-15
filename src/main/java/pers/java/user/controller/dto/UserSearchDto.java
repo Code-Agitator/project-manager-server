@@ -14,4 +14,6 @@ public class UserSearchDto implements PageParam {
     private Date endDate;
     private Integer pageSize;
     private Integer pageNumber;
+    private Integer roleId;
+    private Integer departmentId;
 }

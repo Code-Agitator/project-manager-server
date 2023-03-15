@@ -38,6 +38,8 @@ public class UserController {
         Page<User> page = userService.lambdaQuery().like(StrUtil.isNotBlank(searchDto.getName()), User::getUsername, searchDto.getName())
                 .like(StrUtil.isNotBlank(searchDto.getPhone()), User::getPhone, searchDto.getPhone())
                 .eq(ObjectUtil.isNotNull(searchDto.getStatus()), User::getStatus, searchDto.getStatus())
+                .eq(ObjectUtil.isNotNull(searchDto.getRoleId()), User::getRoleId, searchDto.getRoleId())
+                .eq(ObjectUtil.isNotNull(searchDto.getDepartmentId()), User::getDepartmentId, searchDto.getDepartmentId())
                 .ge(ObjectUtil.isNotNull(searchDto.getStartDate()), User::getCreateTime, searchDto.getStartDate())
                 .le(ObjectUtil.isNotNull(searchDto.getEndDate()), User::getCreateTime, searchDto.getEndDate()).page(MybatisUtils.initPage(searchDto));
         return PageUtil.copy(page, UserVo.class, userVo -> {
