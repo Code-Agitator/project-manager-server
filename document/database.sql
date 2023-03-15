@@ -1,34 +1,36 @@
-create database  user_manager;
-use user_manager;
-create table t_user_info
+create table t_department
 (
-    id           int auto_increment
+    id          int auto_increment
         primary key,
-    name         varchar(50)                         null comment '姓名',
-    age          int                                 null comment '年龄',
-    sex          bit                                 null comment '性别 1-男 0-女',
-    phone        varchar(30)                         null comment '联系电话',
-    address      varchar(255)                        null comment '详细地址',
-    created_time timestamp default CURRENT_TIMESTAMP null,
-    deleted      int       default 0                 null comment '1-删除',
-    area_code    varchar(10)                         null comment '地址编码'
+    name        varchar(255)                        null comment '部门名称',
+    user_id     int                                 null comment '部门主管id',
+    create_time timestamp default CURRENT_TIMESTAMP null
+)
+    comment '部门表';
+
+create table t_role
+(
+    id        int auto_increment comment '权限编号'
+        primary key,
+    role_code varchar(255) null comment '权限字符',
+    role_name varchar(255) null comment '角色名称'
+)
+    comment '角色表';
+
+create table t_user
+(
+    id            int auto_increment
+        primary key,
+    no            varchar(255)                        null comment '工号',
+    role_id       int                                 null comment '角色id',
+    username      varchar(255)                        not null comment '姓名',
+    phone         varchar(255)                        null comment '手机号码',
+    email         varchar(255)                        null comment '邮箱',
+    seat          varchar(255)                        null comment '座位',
+    status        int                                 null comment '0-离职 1-在职 2-实习生',
+    department_id int                                 null comment '部门id',
+    create_time   timestamp default CURRENT_TIMESTAMP null,
+    password      varchar(255)                        null comment '密码'
 )
     comment '用户表';
-
-create table t_user_info_history
-(
-    id           int auto_increment
-        primary key,
-    user_id      int                                 null,
-    name         varchar(50)                         null comment '名称',
-    age          int                                 null comment '年龄',
-    phone        varchar(30)                         null comment '手机',
-    address      varchar(255)                        null comment '地址',
-    created_time timestamp default CURRENT_TIMESTAMP null comment '创建时间',
-    operate_type varchar(20)                         null comment 'update-更新 delete-删除',
-    area_code    varchar(10)                         null,
-    constraint t_user_info_history_t_user_info_fk_user_id
-        foreign key (user_id) references t_user_info (id)
-)
-    comment '用户信息更新历史';
 

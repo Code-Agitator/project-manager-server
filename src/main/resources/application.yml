@@ -10,7 +10,7 @@ spring:
       static-locations: classpath:static/
 #      端口设置
 server:
-  port: 8887
+  port: 8880
   servlet:
     session:
       timeout: PT4H
@@ -22,7 +22,7 @@ server:
 # mybatis设置
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: pers.llz.user.domain.**
+  type-aliases-package: pers.java.user.domain.**
   global-config:
     db-config:
       logic-delete-field: deleted
