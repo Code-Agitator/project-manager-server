@@ -40,9 +40,15 @@ public class User implements Serializable {
     /**
      * 姓名
      */
-    @ApiModelProperty("姓名")
+    @ApiModelProperty("昵称")
     private String username;
 
+
+    /**
+     * 姓名
+     */
+    @ApiModelProperty("姓名")
+    private String name;
     /**
      * 手机号码
      */

@@ -17,7 +17,7 @@ server:
       cookie:
         path: /
         http-only: false
-    context-path: /user-manager/service
+    context-path: /service
 
 # mybatis设置
 mybatis-plus:
