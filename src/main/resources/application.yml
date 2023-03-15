@@ -4,7 +4,7 @@ spring:
     name: user-manager
   # 配置项目环境
   profiles:
-    active: test
+    active: dev
   web:
     resources:
       static-locations: classpath:static/
