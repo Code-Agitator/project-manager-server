@@ -59,7 +59,7 @@ public class UserController {
     @PostMapping("/save")
     public User save(@RequestBody User user) {
         User one = userService.lambdaQuery().eq(User::getEmail, user.getEmail()).one();
-        if (one == null) {
+        if (one != null) {
             throw new ServerException("邮箱已存在");
         }
         userService.save(user);
