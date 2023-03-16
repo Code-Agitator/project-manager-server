@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 
 import io.swagger.annotations.*;
@@ -11,13 +12,14 @@ import lombok.Data;
 
 /**
  * 缺陷表
+ *
  * @TableName t_defect
  */
-@TableName(value ="t_defect")
+@TableName(value = "t_defect")
 @Data
 public class Defect implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -65,10 +67,16 @@ public class Defect implements Serializable {
     private Integer userId;
 
     /**
+     * 备注
+     */
+    @ApiModelProperty("备注")
+    private String comment;
+
+    /**
      * 描述
      */
     @ApiModelProperty("描述")
-    private String comment;
+    private String description;
 
     /**
      * 1-待解决 2-正在解决 3-已解决 4-关闭

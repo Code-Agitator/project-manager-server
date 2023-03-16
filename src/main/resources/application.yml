@@ -1,5 +1,4 @@
 spring:
-
   application:
     name: user-manager
   # 配置项目环境
@@ -7,7 +6,12 @@ spring:
     active: dev
   web:
     resources:
-      static-locations: classpath:static/
+      static-locations: D:/upload/
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
 #      端口设置
 server:
   port: 8880
