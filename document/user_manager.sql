@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 16/03/2023 14:10:17
+ Date: 16/03/2023 23:19:51
 */
 
 SET NAMES utf8mb4;
@@ -34,11 +34,12 @@ CREATE TABLE `t_defect`  (
   `status` int NULL DEFAULT 1 COMMENT '1-待解决 2-正在解决 3-已解决 4-关闭',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '缺陷表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '缺陷表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_defect
 -- ----------------------------
+INSERT INTO `t_defect` VALUES (1, '有重要bug', 'defect', 'high', 'death', 'high', NULL, NULL, '很重要', 1, NULL);
 
 -- ----------------------------
 -- Table structure for t_department
@@ -50,7 +51,7 @@ CREATE TABLE `t_department`  (
   `user_id` int NULL DEFAULT NULL COMMENT '部门主管id',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_department
@@ -65,15 +66,17 @@ CREATE TABLE `t_role`  (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '权限编号',
   `role_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '权限字符',
   `role_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色名称',
+  `menu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES (1, 'admin', '主管');
-INSERT INTO `t_role` VALUES (2, 'test', '测试人员');
-INSERT INTO `t_role` VALUES (3, 'dev', '开发人员');
+INSERT INTO `t_role` VALUES (1, 'admin', '系统管理', '[\"User\",\"Department\",\"Role\",\"Plan\",\"Defect\",\"Case\"]');
+INSERT INTO `t_role` VALUES (2, 'test', '测试人员', NULL);
+INSERT INTO `t_role` VALUES (3, 'dev', '开发人员', NULL);
+INSERT INTO `t_role` VALUES (4, 'major', '主管', '[\"Role\",\"Department\"]');
 
 -- ----------------------------
 -- Table structure for t_testing_case
@@ -88,11 +91,12 @@ CREATE TABLE `t_testing_case`  (
   `result` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '测试结果',
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '测试用例' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '测试用例' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_testing_case
 -- ----------------------------
+INSERT INTO `t_testing_case` VALUES (1, 5, '123', 1, '123', NULL, '123');
 
 -- ----------------------------
 -- Table structure for t_testing_plan
@@ -105,11 +109,13 @@ CREATE TABLE `t_testing_plan`  (
   `user_id` int NOT NULL COMMENT '负责人',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '测试计划管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '测试计划管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_testing_plan
 -- ----------------------------
+INSERT INTO `t_testing_plan` VALUES (5, 'aaa', NULL, 1, '2023-03-16 17:56:09');
+INSERT INTO `t_testing_plan` VALUES (6, 'a', 'TVoECR_Uninst.exe', 1, '2023-03-16 17:58:00');
 
 -- ----------------------------
 -- Table structure for t_user
@@ -129,11 +135,13 @@ CREATE TABLE `t_user`  (
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '密码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES (1, '556556', 1, 'asd', 'asd', '11111', 'admin', '111', 1, 1, '2023-03-15 19:17:28', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `t_user` VALUES (2, NULL, 3, '新用户', '新用户', '123', 'admin2', '123', 1, 1, '2023-03-16 18:56:06', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `t_user` VALUES (3, NULL, 4, '22', '测试', '222', '111', '222', 1, 1, '2023-03-16 19:06:43', '698d51a19d8a121ce581499d7b701668');
 
 SET FOREIGN_KEY_CHECKS = 1;
