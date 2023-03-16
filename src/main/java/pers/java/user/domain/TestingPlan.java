@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import io.swagger.annotations.*;
 import lombok.Data;
 
 /**
@@ -24,16 +26,19 @@ public class TestingPlan implements Serializable {
     /**
      * 测试计划名称
      */
+    @ApiModelProperty("测试计划名称")
     private String name;
 
     /**
      * 测试计划连接
      */
+    @ApiModelProperty("测试计划连接")
     private String link;
 
     /**
      * 负责人
      */
+    @ApiModelProperty("负责人")
     private Integer userId;
 
     /**
