@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 
 import io.swagger.annotations.*;
@@ -11,9 +12,10 @@ import lombok.Data;
 
 /**
  * 角色表
+ *
  * @TableName t_role
  */
-@TableName(value ="t_role")
+@TableName(value = "t_role")
 @Data
 public class Role implements Serializable {
     /**
@@ -35,6 +37,7 @@ public class Role implements Serializable {
     @ApiModelProperty("角色名称")
     private String roleName;
 
+    private String menu;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

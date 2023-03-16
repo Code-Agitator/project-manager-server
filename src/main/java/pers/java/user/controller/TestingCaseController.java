@@ -33,7 +33,7 @@ public class TestingCaseController {
         return testingCase;
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public TestingCase update(@RequestBody TestingCase testingCase) {
         testingCaseService.updateById(testingCase);
         return testingCase;
@@ -45,7 +45,7 @@ public class TestingCaseController {
     }
 
     @PostMapping("/search")
-    public IPage<TestingCaseVo> search(TestingCaseSearchDto searchDto) {
+    public IPage<TestingCaseVo> search(@RequestBody TestingCaseSearchDto searchDto) {
         Page<TestingCase> page = testingCaseService.lambdaQuery().eq(ObjectUtil.isNotNull(searchDto.getUserId()), TestingCase::getUserId, searchDto.getUserId())
                 .eq(ObjectUtil.isNotNull(searchDto.getPlantId()), TestingCase::getPlantId, searchDto.getPlantId())
                 .like(StrUtil.isNotBlank(searchDto.getName()), TestingCase::getName, searchDto.getName()).page(MybatisUtils.initPage(searchDto));

@@ -9,6 +9,7 @@ import pers.java.user.common.utils.MybatisUtils;
 import pers.java.user.config.util.PageUtil;
 import pers.java.user.controller.vo.DepartmentVo;
 import pers.java.user.domain.Department;
+import pers.java.user.domain.User;
 import pers.java.user.service.DepartmentService;
 import pers.java.user.service.UserService;
 
@@ -35,12 +36,15 @@ public class DepartmentController {
 
     @PostMapping("/save")
     public Department save(@RequestBody Department department) {
+        userService.lambdaUpdate().eq(User::getId, department.getUserId()).set(User::getRoleId, 4).update();
         departmentService.save(department);
         return department;
     }
 
     @PutMapping("/update")
     public Department update(@RequestBody Department department) {
+        userService.lambdaUpdate().eq(User::getId, departmentService.getById(department.getId()).getUserId()).set(User::getRoleId, 2).update();
+        userService.lambdaUpdate().eq(User::getId, department.getUserId()).set(User::getRoleId, 4).update();
         departmentService.updateById(department);
         return department;
     }
