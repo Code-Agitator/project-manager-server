@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -22,6 +23,7 @@ import pers.java.user.service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -98,8 +100,8 @@ public class TestingPlanController {
             response.setContentType("application/octet-stream");
             response.setCharacterEncoding("utf-8");
             response.setContentLength((int) file.length());
-            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             try (BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(file.toPath()));) {
+                response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + URLEncoder.encode(fileName, "utf8"));
                 byte[] buff = new byte[1024];
                 OutputStream os = response.getOutputStream();
                 int i = 0;
