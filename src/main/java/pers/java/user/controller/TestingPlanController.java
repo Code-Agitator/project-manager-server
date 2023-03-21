@@ -46,7 +46,9 @@ public class TestingPlanController {
     public IPage<TestingPlanVo> search(@RequestBody TestingPlanSearchDto searchDto) {
         Page<TestingPlan> page = testingPlanService.lambdaQuery().like(StrUtil.isNotBlank(searchDto.getName()), TestingPlan::getName, searchDto.getName())
                 .ge(ObjectUtil.isNotNull(searchDto.getStartTime()), TestingPlan::getCreateTime, searchDto.getStartTime())
-                .le(ObjectUtil.isNotNull(searchDto.getEndTime()), TestingPlan::getCreateTime, searchDto.getEndTime()).page(MybatisUtils.initPage(searchDto));
+                .le(ObjectUtil.isNotNull(searchDto.getEndTime()), TestingPlan::getCreateTime, searchDto.getEndTime())
+                .eq(ObjectUtil.isNotNull(searchDto.getUserId()), TestingPlan::getUserId, searchDto.getUserId())
+                .page(MybatisUtils.initPage(searchDto));
         return PageUtil.copy(page, TestingPlanVo.class, testingPlanVo -> {
             testingPlanVo.setUser(userService.getById(testingPlanVo.getUserId()));
         });

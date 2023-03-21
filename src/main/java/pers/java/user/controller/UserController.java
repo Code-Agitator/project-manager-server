@@ -93,7 +93,9 @@ public class UserController {
             throw new ServerException("作为已存在");
         }
 
-        user.setNo(IdUtil.getSnowflakeNextIdStr());
+        if (StrUtil.isBlank(user.getNo())) {
+            user.setNo(IdUtil.getSnowflakeNextIdStr());
+        }
         user.setPassword(DigestUtil.md5Hex("password"));
         userService.save(user);
         return user;

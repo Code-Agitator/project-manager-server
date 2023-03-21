@@ -43,7 +43,7 @@ public class DepartmentController {
 
     @PutMapping("/update")
     public Department update(@RequestBody Department department) {
-        userService.lambdaUpdate().eq(User::getId, departmentService.getById(department.getId()).getUserId()).set(User::getRoleId, 2).update();
+        userService.lambdaUpdate().eq(User::getId, departmentService.getById(department.getId()).getUserId()).ne(User::getRoleId, 1).set(User::getRoleId, 2).update();
         userService.lambdaUpdate().eq(User::getId, department.getUserId()).set(User::getRoleId, 4).update();
         departmentService.updateById(department);
         return department;
